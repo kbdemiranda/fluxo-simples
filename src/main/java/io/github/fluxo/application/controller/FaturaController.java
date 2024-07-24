@@ -54,4 +54,21 @@ public class FaturaController {
         faturaService.deletarFatura(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/total-pago")
+    public ResponseEntity<?> buscarTotalPagoPorPeriodo(@RequestParam String startDate, @RequestParam String endDate) {
+        return ResponseEntity.ok(faturaService.buscarTotalPagoPorPeriodo(startDate, endDate));
+    }
+
+    @PatchMapping("/{id}/pagar")
+    public ResponseEntity<FaturaDTO> pagarFatura(@PathVariable Long id) {
+        FaturaDTO dto = faturaService.pagarFatura(id);
+        return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
+    }
+
+    @PatchMapping("/{id}/cancelar-pagamento")
+    public ResponseEntity<FaturaDTO> cancelarPagamentoFatura(@PathVariable Long id) {
+        FaturaDTO dto = faturaService.cancelarPagamentoFatura(id);
+        return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
+    }
 }

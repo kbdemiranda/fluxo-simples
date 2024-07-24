@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
 public interface FaturaRepository extends JpaRepository<Fatura, Long> {
 
@@ -19,5 +21,12 @@ public interface FaturaRepository extends JpaRepository<Fatura, Long> {
                                @Param("dataVencimento") String dataVencimento,
                                @Param("dataPagamento") String dataPagamento,
                                Pageable pageable);
+
+    @Query("SELECT SUM(f.valor) FROM Fatura f " +
+            "WHERE TO_CHAR(f.dataPagamento, 'YYYY-MM-DD') IS NOT NULL " +
+            "AND TO_CHAR(f.dataPagamento, 'YYYY-MM-DD') BETWEEN :startDate AND :endDate " +
+            "AND f.paga = true")
+    BigDecimal findTotalPagoPorPeriodo(@Param("startDate") String startDate,
+                                       @Param("endDate") String endDate);
 
 }

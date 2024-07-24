@@ -9,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Service
 public class FaturaServiceImpl implements FaturaService {
 
@@ -53,6 +56,29 @@ public class FaturaServiceImpl implements FaturaService {
     @Override
     public void deletarFatura(Long id) {
         faturaRepository.delete(getFatura(id));
+    }
+
+    @Override
+    public BigDecimal buscarTotalPagoPorPeriodo(String startDate, String endDate) {
+        return faturaRepository.findTotalPagoPorPeriodo(startDate, endDate);
+    }
+
+    @Override
+    public FaturaDTO pagarFatura(Long id) {
+        Fatura fatura = getFatura(id);
+        fatura.setDataPagamento(LocalDate.now());
+        fatura.setPaga(true);
+        Fatura faturaEntity = faturaRepository.save(fatura);
+        return faturaMapper.toDTO(faturaEntity);
+    }
+
+    @Override
+    public FaturaDTO cancelarPagamentoFatura(Long id) {
+        Fatura fatura = getFatura(id);
+        fatura.setDataPagamento(null);
+        fatura.setPaga(false);
+        Fatura faturaEntity = faturaRepository.save(fatura);
+        return faturaMapper.toDTO(faturaEntity);
     }
 
     private Fatura getFatura(Long id){

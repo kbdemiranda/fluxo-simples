@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class FaturaServiceImpl implements FaturaService {
@@ -79,6 +80,11 @@ public class FaturaServiceImpl implements FaturaService {
         fatura.setPaga(false);
         Fatura faturaEntity = faturaRepository.save(fatura);
         return faturaMapper.toDTO(faturaEntity);
+    }
+
+    @Override
+    public void saveAll(List<Fatura> faturas) {
+        faturaRepository.saveAll(faturas);
     }
 
     private Fatura getFatura(Long id){

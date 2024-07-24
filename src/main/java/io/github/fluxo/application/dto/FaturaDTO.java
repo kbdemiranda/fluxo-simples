@@ -2,6 +2,7 @@ package io.github.fluxo.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -17,12 +18,12 @@ public class FaturaDTO {
     @NotBlank(message = "Descrição é obrigatória")
     private String descricao;
     @JsonProperty("valor")
-    @NotBlank(message = "Valor é obrigatório")
+    @NotNull(message = "Valor é obrigatório")
     private BigDecimal valor;
-    @JsonProperty("dataVencimento")
-    @NotBlank(message = "Data de vencimento é obrigatória")
+    @JsonProperty("data_vencimento")
+    @NotNull(message = "Data de vencimento é obrigatória")
     private LocalDate dataVencimento;
-    @JsonProperty("dataPagamento")
+    @JsonProperty("data_pagamento")
     private LocalDate dataPagamento;
     @JsonProperty("paga")
     private Boolean paga = false;

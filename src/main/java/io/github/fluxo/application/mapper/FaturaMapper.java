@@ -2,10 +2,12 @@ package io.github.fluxo.application.mapper;
 
 import io.github.fluxo.application.dto.FaturaDTO;
 import io.github.fluxo.domain.model.Fatura;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FaturaMapper {
 
-    public static FaturaDTO toDTO(Fatura fatura) {
+    public FaturaDTO toDTO(Fatura fatura) {
         FaturaDTO dto = new FaturaDTO();
         dto.setId(fatura.getId());
         dto.setDescricao(fatura.getDescricao());
@@ -16,7 +18,7 @@ public class FaturaMapper {
         return dto;
     }
 
-    public static Fatura toModel(FaturaDTO faturaDTO) {
+    public Fatura toEntity(FaturaDTO faturaDTO) {
         return Fatura.builder()
                 .id(faturaDTO.getId())
                 .descricao(faturaDTO.getDescricao())

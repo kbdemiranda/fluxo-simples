@@ -5,13 +5,10 @@ import io.github.fluxo.application.service.FaturaService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/faturas")
@@ -34,9 +31,27 @@ public class FaturaController {
         return ResponseEntity.ok(faturaDTOs);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<FaturaDTO> buscarFaturaPorId(@PathVariable Long id) {
+        FaturaDTO faturaDTO = faturaService.buscarFaturaPorId(id);
+        return ResponseEntity.ok(faturaDTO);
+    }
+
     @PostMapping
     public ResponseEntity<?> gerarFatura(@RequestBody @Valid FaturaDTO faturaDTO) {
         FaturaDTO dto = faturaService.gerarFatura(faturaDTO);
         return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<FaturaDTO> atualizarFatura(@PathVariable Long id, @RequestBody @Valid FaturaDTO faturaDTO) {
+        FaturaDTO dto = faturaService.atualizarFatura(id, faturaDTO);
+        return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarFatura(@PathVariable Long id) {
+        faturaService.deletarFatura(id);
+        return ResponseEntity.noContent().build();
     }
 }

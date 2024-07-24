@@ -7,13 +7,12 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 public class FaturaDTO {
 
     @JsonProperty("id")
-    private UUID id;
+    private Long id;
     @JsonProperty("descricao")
     @NotBlank(message = "Descrição é obrigatória")
     private String descricao;

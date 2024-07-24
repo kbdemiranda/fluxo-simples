@@ -1,7 +1,7 @@
 create schema if not exists fluxo;
 
 create table fluxo.fatura (
-    id uuid,
+    id bigserial,
     descricao text not null,
     valor numeric(10, 2) not null,
     data_vencimento date not null,

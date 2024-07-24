@@ -32,4 +32,30 @@ public class FaturaServiceImpl implements FaturaService {
         return faturaRepository.findByFilters(descricao, dataVencimento, dataPagamento, pageable)
                 .map(faturaMapper::toDTO);
     }
+
+    @Override
+    public FaturaDTO buscarFaturaPorId(Long id) {
+        return faturaMapper.toDTO(getFatura(id));
+    }
+
+    @Override
+    public FaturaDTO atualizarFatura(Long id, FaturaDTO faturaDTO) {
+        Fatura fatura = getFatura(id);
+        fatura.setDescricao(faturaDTO.getDescricao());
+        fatura.setDataVencimento(faturaDTO.getDataVencimento());
+        fatura.setDataPagamento(faturaDTO.getDataPagamento());
+        fatura.setValor(faturaDTO.getValor());
+        fatura.setPaga(faturaDTO.getPaga());
+        Fatura faturaEntity = faturaRepository.save(fatura);
+        return faturaMapper.toDTO(faturaEntity);
+    }
+
+    @Override
+    public void deletarFatura(Long id) {
+        faturaRepository.delete(getFatura(id));
+    }
+
+    private Fatura getFatura(Long id){
+        return faturaRepository.findById(id).orElseThrow(() -> new RuntimeException("Fatura não encontrada"));
+    }
 }

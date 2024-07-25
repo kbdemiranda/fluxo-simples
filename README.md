@@ -72,7 +72,7 @@ Para garantir a entrega do projeto os seguintes requisitos foram estabelecidos:
 ### Usuários
 
 ----
-Para poder testar aplicação, alguns usuarios foram carregados nas migrations iniciais.
+Para poder testar aplicação, alguns usuarios foram carregados nas migrações iniciais.
 Abaixo segue a lista de usuários e suas respectivas credenciais:
 
 | Usuario      | Senha   | Perfil             |

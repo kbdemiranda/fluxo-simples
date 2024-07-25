@@ -1,4 +1,4 @@
-INSERT INTO fluxo.perfis (nome) VALUES ('USER');
-INSERT INTO fluxo.perfis (nome) VALUES ('ADMIN');
-INSERT INTO fluxo.perfis (nome) VALUES ('GERENTE');
-INSERT INTO fluxo.perfis (nome) VALUES ('CONTABIL');
+INSERT INTO fluxo.perfis (nome) VALUES ('ROLE_USER');
+INSERT INTO fluxo.perfis (nome) VALUES ('ROLE_ADMIN');
+INSERT INTO fluxo.perfis (nome) VALUES ('ROLE_GERENTE');
+INSERT INTO fluxo.perfis (nome) VALUES ('ROLE_CONTABIL');

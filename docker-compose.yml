@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  db:
+    hostname: db
+    container_name: fluxo-db
+    image: kbdemiranda/postgres:bullseye
+    volumes:
+      - ${HOME}/Volumes/FluxoDB:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: SysFluxo
+      POSTGRES_PASSWORD: r2*dNN*26E96
+      POSTGRES_DB: fluxo
+    ports:
+      - "5430:5432"
+    networks:
+      - fluxo-network
+
+  backend:
+    hostname: backend
+    container_name: fluxo-api
+    image: kbdemiranda/fluxosimples:latest
+    ports:
+      - "8080:8080"
+    environment:
+      HOSTNAME: backend
+      SPRING_APPLICATION_NAME: Fluxo
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATASOURCE_USERNAME: SysFluxo
+      SPRING_DATASOURCE_PASSWORD: r2*dNN*26E96
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fluxo
+      SPRING_FLYWAY_DEFAULT_SCHEMA: fluxo
+      SPRING_JPA_SHOW_SQL: 'true'
+      SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA: fluxo
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: 'true'
+      SERVER_SERVLET_CONTEXT_PATH: /api
+      JWT_SECRET: ed6341f986937a04de35096f970bea82c40d3c9c847fcfc327b49f8acde20722
+    depends_on:
+      - db
+    networks:
+      - fluxo-network
+
+networks:
+  fluxo-network:
+    driver: bridge

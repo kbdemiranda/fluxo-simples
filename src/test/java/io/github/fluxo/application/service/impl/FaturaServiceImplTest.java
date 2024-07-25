@@ -1,9 +1,9 @@
 package io.github.fluxo.application.service.impl;
 
-import io.github.fluxo.domain.model.Fatura;
-import io.github.fluxo.infrastructure.repository.FaturaRepository;
 import io.github.fluxo.application.dto.FaturaDTO;
 import io.github.fluxo.application.mapper.FaturaMapper;
+import io.github.fluxo.domain.model.Fatura;
+import io.github.fluxo.infrastructure.repository.FaturaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

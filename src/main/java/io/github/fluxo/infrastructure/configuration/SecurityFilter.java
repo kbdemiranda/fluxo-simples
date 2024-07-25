@@ -2,8 +2,6 @@ package io.github.fluxo.infrastructure.configuration;
 
 import io.github.fluxo.domain.model.Usuario;
 import io.github.fluxo.infrastructure.repository.UsuarioRepository;
-
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

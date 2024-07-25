@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,18 +52,21 @@ public class FaturaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'GERENTE')")
     public ResponseEntity<?> gerarFatura(@RequestBody @Valid FaturaDTO faturaDTO) {
         FaturaDTO dto = faturaService.gerarFatura(faturaDTO);
         return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GERENTE')")
     public ResponseEntity<FaturaDTO> atualizarFatura(@PathVariable Long id, @RequestBody @Valid FaturaDTO faturaDTO) {
         FaturaDTO dto = faturaService.atualizarFatura(id, faturaDTO);
         return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GERENTE')")
     public ResponseEntity<?> deletarFatura(@PathVariable Long id) {
         faturaService.deletarFatura(id);
         return ResponseEntity.noContent().build();
@@ -74,12 +78,14 @@ public class FaturaController {
     }
 
     @PatchMapping("/{id}/pagar")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GERENTE', 'CONTABIL')")
     public ResponseEntity<FaturaDTO> pagarFatura(@PathVariable Long id) {
         FaturaDTO dto = faturaService.pagarFatura(id);
         return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);
     }
 
     @PatchMapping("/{id}/cancelar-pagamento")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GERENTE', 'CONTABIL')")
     public ResponseEntity<FaturaDTO> cancelarPagamentoFatura(@PathVariable Long id) {
         FaturaDTO dto = faturaService.cancelarPagamentoFatura(id);
         return ResponseEntity.created(URI.create("/fatura/" + dto.getId())).body(dto);

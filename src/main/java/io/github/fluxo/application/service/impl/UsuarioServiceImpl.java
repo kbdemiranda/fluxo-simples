@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PerfilRepository perfilRepository;
     private final UsuarioMapper usuarioMapper;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository, PerfilRepository perfilRepository, UsuarioMapper usuarioMapper) {
@@ -49,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = getUsuario(id);
 
         usuario.setNomeUsuario(usuarioDTO.getNomeUsuario());
-        usuario.setSenha(usuarioDTO.getSenha());
+        usuario.setSenha(passwordEncoder.encode(usuarioDTO.getSenha()));
         usuario.setAtivo(usuarioDTO.isAtivo());
 
         usuario = usuarioRepository.save(usuario);

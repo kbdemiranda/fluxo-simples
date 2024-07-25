@@ -71,6 +71,18 @@ Para garantir a entrega do projeto os seguintes requisitos foram estabelecidos:
 
 ### Usuários
 
+----
+Para poder testar aplicação, alguns usuarios foram carregados nas migrations iniciais.
+Abaixo segue a lista de usuários e suas respectivas credenciais:
+
+| Usuario      | Senha   | Perfil             |
+|--------------|---------|--------------------|
+| admin        | admin   | Administrador      |
+| johndoe      | doe2024 | Contabil           |
+| janesmith    | jane123 | Gerente            |
+| robertbrown  | bob123  | Usuario (SIMPLES)  |
+
+----
 - **POST /usuarios/cadastrar**
     - Cadastra um novo usuário.
     - Exemplo de request body:

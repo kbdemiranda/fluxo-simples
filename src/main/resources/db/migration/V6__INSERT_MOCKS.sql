@@ -15,7 +15,7 @@ INSERT INTO fluxo.usuario_perfis (usuario_id, perfil_id)
 VALUES (3, 3);
 
 INSERT INTO fluxo.usuarios (id, nome_usuario, senha, ativo)
-VALUES (4, 'robertbrown', '$2a$10$zdmcx8VVLphBv1JzZfkqVOXWHpxqJBim1TwiBfwaubJrreGZornFS', true);
+VALUES (4, 'robertbrown', '$2a$10$7j4nvWQDJEYOanxO6Nhb9OsdavTB.rrkn2Z//KO3JTR1HcVnw8P6O', true);
 INSERT INTO fluxo.usuario_perfis (usuario_id, perfil_id)
 VALUES (4, 1);
 

@@ -172,25 +172,10 @@ Para executar o projeto, siga os passos abaixo:
    git clone https://github.com/kbdemiranda/fluxo-simples.git
    cd fluxo-simples
    ```
-3. Configuração do Docker Compose
-   Para facilitar o uso do `docker-compose` em diferentes sistemas operacionais, é necessário configurar corretamente as variáveis de ambiente. Siga os passos abaixo para renomear o arquivo `.env` adequado para seu sistema operacional.
 
-   **Para Windows:**
-    - Renomeie o arquivo `.env-windows` para `.env`.
-    - Comando no PowerShell:
-    ```powershell
-    Rename-Item -Path .env-windows -NewName .env
-    ```
-   **Para Linux/Mac:**
-    - Renomeie o arquivo `.env-linux` para `.env`.
-    - Comando no terminal:
-    ```bash
-    mv .env-linux .env
-    ```
-
-6. Inicie os containers:
+3. Inicie os containers:
    ```bash
    docker-compose up
    ```
 
-7. A aplicação estará disponível em `http://localhost:8080/api` ou Swagger `http://localhost:8080/api/swagger-ui/index.html`.
+4. A aplicação estará disponível em `http://localhost:8080/api` ou Swagger `http://localhost:8080/api/swagger-ui/index.html`.

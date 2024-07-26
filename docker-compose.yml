@@ -4,7 +4,7 @@ services:
     container_name: fluxo-db
     image: kbdemiranda/postgres:bullseye
     volumes:
-      - ${USER_DIR}/FluxoDB:/var/lib/postgresql/data
+      - fluxo-database:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: SysFluxo
       POSTGRES_PASSWORD: r2*dNN*26E96
@@ -41,3 +41,7 @@ services:
 networks:
   fluxo-network:
     driver: bridge
+
+volumes:
+    fluxo-database:
+        driver: local

@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   db:
     hostname: db
     container_name: fluxo-db
     image: kbdemiranda/postgres:bullseye
     volumes:
-      - ${HOME}/Volumes/FluxoDB:/var/lib/postgresql/data
+      - c:/Volumes/FluxoDB:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: SysFluxo
       POSTGRES_PASSWORD: r2*dNN*26E96
